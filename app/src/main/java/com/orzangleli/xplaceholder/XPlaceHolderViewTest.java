@@ -1,35 +1,47 @@
 package com.orzangleli.xplaceholder;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.orzangleli.placeholder.IPlaceHolderCallback;
-import com.orzangleli.placeholder.IPlaceHolderLayout;
 import com.orzangleli.placeholder.State;
 import com.orzangleli.placeholder.XPlaceHolderUtil;
 import com.orzangleli.xplaceholder.placeholder.ImageAndTextPlaceHolderLayout;
+import com.orzangleli.xplaceholder.placeholder.ImageAndTextPlaceHolderVo;
 
-public class ZZPlaceHolderActivityTest extends AppCompatActivity implements IPlaceHolderCallback {
+public class XPlaceHolderViewTest extends AppCompatActivity implements IPlaceHolderCallback {
 
-    ImageAndTextPlaceHolderLayout mImageAndTextPlaceHolderLayout;
     TextView mTextView;
-    int mTimes = 0;
+    ImageAndTextPlaceHolderLayout mImageAndTextPlaceHolderLayout;
+    int mTimes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zzplace_holder_test);
+        setContentView(R.layout.activity_xplace_holder_view_test);
 
-        mTextView = this.findViewById(R.id.textview);
+        mTextView = findViewById(R.id.textView);
 
         mImageAndTextPlaceHolderLayout = new ImageAndTextPlaceHolderLayout(this);
-        XPlaceHolderUtil.attach(this, mImageAndTextPlaceHolderLayout, this);
+        ImageAndTextPlaceHolderVo imageAndTextPlaceHolderVo = new ImageAndTextPlaceHolderVo.Builder()
+                .setLoadingText("加载中。。。")
+                .setLoadingImageResource(R.drawable.icon_loading)
+                .setEmptyText("页面空白文本")
+                .setEmptyImageResource(R.drawable.icon_empty)
+                .setErrorText("页面加载错误")
+                .setErrorImageResource(R.drawable.icon_error)
+                .build();
+        mImageAndTextPlaceHolderLayout.setPlaceHolderVo(imageAndTextPlaceHolderVo);
+
+        XPlaceHolderUtil.attach(mTextView, mImageAndTextPlaceHolderLayout, this);
 
         // 默认只有错误页面可以点击重试，可以设置
         mImageAndTextPlaceHolderLayout.setAvailableStateForClick(new State[]{State.EMPTY, State.ERROR});
-        mImageAndTextPlaceHolderLayout.setLoadingAnimationDuration(200);
+
+        mImageAndTextPlaceHolderLayout.setPlaceHolderBackgroundColor(Color.MAGENTA);
 
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,4 +66,5 @@ public class ZZPlaceHolderActivityTest extends AppCompatActivity implements IPla
             }
         }, 2000);
     }
+
 }

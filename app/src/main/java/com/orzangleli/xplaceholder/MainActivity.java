@@ -6,20 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.orzangleli.placeholder.IPlaceHolderCallback;
-import com.orzangleli.placeholder.State;
-import com.orzangleli.placeholder.XPlaceHolderUtil;
-import com.orzangleli.xplaceholder.placeholder.ImageAndTextPlaceHolderLayout;
-import com.orzangleli.xplaceholder.placeholder.ImageAndTextPlaceHolderVo;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    TextView case1, case2, case3, case4;
+    TextView case1, case2, case3, case4, case5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zzplace_holder_demo);
+        setContentView(R.layout.activity_xplace_holder_demo);
 
         initView();
 
@@ -30,12 +24,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         case2 = this.findViewById(R.id.case2);
         case3 = this.findViewById(R.id.case3);
         case4 = this.findViewById(R.id.case4);
+        case5 = this.findViewById(R.id.case5);
 
         case1.setOnClickListener(this);
         case2.setOnClickListener(this);
         case3.setOnClickListener(this);
         case4.setOnClickListener(this);
-
+        case5.setOnClickListener(this);
     }
 
     @Override
@@ -43,16 +38,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = null;
         switch (v.getId()) {
             case R.id.case1:
-                intent = new Intent(this, ZZPlaceHolderActivityTest.class);
+                intent = new Intent(this, XPlaceHolderActivityTest.class);
                 break;
             case R.id.case2:
-                intent = new Intent(this, ZZPlaceHolderFragmentTest.class);
+                intent = new Intent(this, XPlaceHolderFragmentTest.class);
                 break;
             case R.id.case3:
-                intent = new Intent(this, ZZPlaceHolderFragmentViewPagerTest.class);
+                intent = new Intent(this, XPlaceHolderFragmentViewPagerTest.class);
                 break;
             case R.id.case4:
-                intent = new Intent(this, ZZPlaceHolderViewTest.class);
+                intent = new Intent(this, XPlaceHolderViewTest.class);
+                break;
+            case R.id.case5:
+                intent = new Intent(this, XPlaceHolderXmlActivity.class);
                 break;
         }
         this.startActivity(intent);

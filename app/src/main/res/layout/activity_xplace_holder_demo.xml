@@ -49,5 +49,14 @@
         android:background="#0aa"
         />
 
+    <TextView
+        android:id="@+id/case5"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="xml中当普通控件使用"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:background="#880"
+        />
 
 </LinearLayout>

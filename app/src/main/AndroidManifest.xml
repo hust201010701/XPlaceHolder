@@ -16,16 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name=".ZZPlaceHolderActivityTest">
+        <activity android:name=".XPlaceHolderActivityTest">
         </activity>
-        <activity android:name=".ZZPlaceHolderFragmentTest">
+        <activity android:name=".XPlaceHolderFragmentTest">
         </activity>
-        <activity android:name=".ZZPlaceHolderFragmentViewPagerTest">
+        <activity android:name=".XPlaceHolderFragmentViewPagerTest">
         </activity>
-        <activity android:name=".ZZPlaceHolderViewTest">
+        <activity android:name=".XPlaceHolderViewTest">
         </activity>
-
+        <activity android:name=".XPlaceHolderXmlActivity">
+        </activity>
     </application>
 
 </manifest>

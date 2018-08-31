@@ -12,7 +12,6 @@ import com.orzangleli.placeholder.IPlaceHolderCallback;
 import com.orzangleli.placeholder.State;
 import com.orzangleli.placeholder.XPlaceHolderUtil;
 import com.orzangleli.xplaceholder.placeholder.ImageAndTextPlaceHolderLayout;
-import com.orzangleli.xplaceholder.placeholder.ImageAndTextPlaceHolderVo;
 
 /**
  * A simple {@link Fragment} subclass.

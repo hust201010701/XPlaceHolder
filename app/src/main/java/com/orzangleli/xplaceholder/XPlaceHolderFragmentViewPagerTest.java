@@ -13,7 +13,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ZZPlaceHolderFragmentViewPagerTest extends AppCompatActivity {
+public class XPlaceHolderFragmentViewPagerTest extends AppCompatActivity {
     TabLayout mTabLayout;
     ViewPager mViewPager;
     FragmentStatePagerAdapter mFragmentStatePagerAdapter;
@@ -23,7 +23,7 @@ public class ZZPlaceHolderFragmentViewPagerTest extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zzplace_holder_fragment_view_pager_test);
+        setContentView(R.layout.activity_xplace_holder_fragment_view_pager_test);
 
         // 创建一个viewpager  和 FragmentPagerAdapter
         mTabLayout = this.findViewById(R.id.tabLayout);

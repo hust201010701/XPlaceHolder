@@ -3,7 +3,7 @@ package com.orzangleli.xplaceholder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-public class ZZPlaceHolderFragmentTest extends AppCompatActivity {
+public class XPlaceHolderFragmentTest extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
