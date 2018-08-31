@@ -1,17 +1,20 @@
-package com.orzangleli.xplaceholder;
+package com.orzangleli.xplaceholder.placeholder;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.orzangleli.placeholder.IPlaceHolderLayout;
 import com.orzangleli.placeholder.State;
+import com.orzangleli.xplaceholder.R;
 
 /**
  * <p>description：带图片和文本的占位控件
@@ -30,6 +33,8 @@ public class ImageAndTextPlaceHolderLayout extends IPlaceHolderLayout<ImageAndTe
     private ImageView mImageView;
     private TextView mTextView;
     private ObjectAnimator mRotationAnimation;
+    private int mBgColor;
+    private long mLoadingDuration = 1000;
 
     public ImageAndTextPlaceHolderLayout(@NonNull Context context) {
         super(context);
@@ -49,16 +54,17 @@ public class ImageAndTextPlaceHolderLayout extends IPlaceHolderLayout<ImageAndTe
     }
 
     @Override
-    protected void initView(View rootView) {
+    protected void bindView(View rootView) {
         mImageView = rootView.findViewById(R.id.img);
         mTextView = rootView.findViewById(R.id.text);
-        mRotationAnimation = ObjectAnimator.ofFloat(mImageView, "rotation", 0, 360);
-        mRotationAnimation.setDuration(6);
+        mRotationAnimation = ObjectAnimator.ofFloat(mImageView, "rotation", 0, 360f);
+        mRotationAnimation.setInterpolator(new LinearInterpolator());
+        mRotationAnimation.setDuration(mLoadingDuration);
         mRotationAnimation.setRepeatCount(Animation.INFINITE);
     }
 
-    public void setLoadingAnimationDuration(int duration) {
-        mRotationAnimation.setDuration(duration);
+    public void setLoadingAnimationDuration(long millSeconds) {
+        mLoadingDuration = millSeconds;
     }
 
     @Override
@@ -80,9 +86,13 @@ public class ImageAndTextPlaceHolderLayout extends IPlaceHolderLayout<ImageAndTe
     public void bindState(State state) {
         switch (state) {
             case LOADING:
+                if (mPlaceHolderView != null) {
+                    mPlaceHolderView.setBackgroundColor(mBgColor);
+                }
                 if (mPlaceHolderVo != null) {
                     mImageView.setImageResource(mPlaceHolderVo.loadingImageResource);
-                    if (!mRotationAnimation.isRunning()) {
+                    if (mRotationAnimation != null && !mRotationAnimation.isRunning()) {
+                        mRotationAnimation.setDuration(mLoadingDuration);
                         mRotationAnimation.start();
                     }
                     mTextView.setText(mPlaceHolderVo.loadingText);
@@ -92,6 +102,9 @@ public class ImageAndTextPlaceHolderLayout extends IPlaceHolderLayout<ImageAndTe
                 if (mRotationAnimation.isRunning()) {
                     mRotationAnimation.end();
                 }
+                if (mPlaceHolderView != null) {
+                    mPlaceHolderView.setBackgroundColor(mBgColor);
+                }
                 if (mPlaceHolderVo != null) {
                     mImageView.setImageResource(mPlaceHolderVo.emptyImageResource);
                     mTextView.setText(mPlaceHolderVo.emptyText);
@@ -100,6 +113,9 @@ public class ImageAndTextPlaceHolderLayout extends IPlaceHolderLayout<ImageAndTe
             case ERROR:
                 if (mRotationAnimation.isRunning()) {
                     mRotationAnimation.end();
+                }
+                if (mPlaceHolderView != null) {
+                    mPlaceHolderView.setBackgroundColor(mBgColor);
                 }
                 if (mPlaceHolderVo != null) {
                     mImageView.setImageResource(mPlaceHolderVo.errorImageResource);
@@ -112,5 +128,9 @@ public class ImageAndTextPlaceHolderLayout extends IPlaceHolderLayout<ImageAndTe
                 }
                 break;
         }
+    }
+
+    public void setPlaceHolderBackgroundColor(int color) {
+        mBgColor = color;
     }
 }

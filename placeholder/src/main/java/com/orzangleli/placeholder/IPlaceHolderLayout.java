@@ -68,7 +68,7 @@ public abstract class IPlaceHolderLayout<T> extends FrameLayout{
         mPlaceHolderView = LayoutInflater.from(mContext).inflate(getLayoutId(), this, false);
         this.addView(mPlaceHolderView);
 
-        initView(mPlaceHolderView);
+        bindView(mPlaceHolderView);
         mPlaceHolderView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +80,7 @@ public abstract class IPlaceHolderLayout<T> extends FrameLayout{
     }
 
     protected abstract int getLayoutId();
-    protected abstract void initView(View rootView);
+    protected abstract void bindView(View rootView);
 
     public State getState() {
         return mState;
@@ -159,13 +159,17 @@ public abstract class IPlaceHolderLayout<T> extends FrameLayout{
         if (mContentView != null) {
             // 1. 将 mContentView 从 PlaceHolderLayout 中移除
             removeViewFromParent(mContentView);
-            // 2. 从 parent 中移除 PlaceHolderLayout
-            removeViewFromParent(this);
             mContentView.setVisibility(View.VISIBLE);
             // 3. 向 parent 中添加 mContentView
             if (mParentView != null) {
+                removeViewFromParent(this);
                 mParentView.addView(mContentView, mTargetPositionInParent, mLayoutParamsInParent);
+            } else {
+                this.addView(mContentView);
             }
+        }
+        if (mPlaceHolderView != null) {
+            mPlaceHolderView.setVisibility(View.GONE);
         }
     }
 
@@ -179,11 +183,19 @@ public abstract class IPlaceHolderLayout<T> extends FrameLayout{
             // 2. 从 PlaceHolderLayout 中添加 mContentView
             this.addView(mContentView);
             mContentView.setVisibility(View.GONE);
-            removeViewFromParent(this);
             // 3. 向 parent 中添加 mContentView
             if (mParentView != null) {
+                removeViewFromParent(this);
                 mParentView.addView(this, mTargetPositionInParent, mLayoutParamsInParent);
+            } else {
+                if (mPlaceHolderView != null) {
+                    removeViewFromParent(mPlaceHolderView);
+                    this.addView(mPlaceHolderView);
+                }
             }
+        }
+        if (mPlaceHolderView != null) {
+            mPlaceHolderView.setVisibility(View.VISIBLE);
         }
     }
 

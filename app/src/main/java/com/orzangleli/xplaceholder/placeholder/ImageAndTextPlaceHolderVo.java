@@ -1,4 +1,4 @@
-package com.orzangleli.xplaceholder;
+package com.orzangleli.xplaceholder.placeholder;
 
 /**
  * <p>description：
@@ -12,7 +12,7 @@ package com.orzangleli.xplaceholder;
  * <p>@version
  */
 
-class ImageAndTextPlaceHolderVo {
+public class ImageAndTextPlaceHolderVo {
     public int loadingImageResource;
     public int emptyImageResource;
     public int errorImageResource;
