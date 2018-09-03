@@ -4,13 +4,14 @@
              android:layout_height="match_parent"
              >
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="加载成功状态，点击切换"
-        android:background="#80a0"
+        android:text="Load Success!\nPress to change state"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:background="#0aa"
         />
 
 </FrameLayout>

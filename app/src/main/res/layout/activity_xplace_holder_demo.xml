@@ -6,17 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="20dp"
     >
-
 
     <TextView
         android:id="@+id/case1"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="Activity"
-        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:background="#f00"
+        android:background="#EC7063"
         />
 
     <TextView
@@ -26,7 +25,7 @@
         android:text="Fragment"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:background="#0f0"
+        android:background="#5DADE2"
         />
 
     <TextView
@@ -36,7 +35,7 @@
         android:text="Fragment + ViewPager"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:background="#f0f"
+        android:background="#16A085"
         />
 
     <TextView
@@ -46,17 +45,17 @@
         android:text="View"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:background="#0aa"
+        android:background="#F39C12"
         />
 
     <TextView
         android:id="@+id/case5"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:text="xml中当普通控件使用"
+        android:text="Used As Common Widget In xml"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:background="#880"
+        android:background="#BA4A00"
         />
 
 </LinearLayout>

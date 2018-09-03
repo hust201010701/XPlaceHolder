@@ -11,9 +11,12 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:text="加载成功状态，点击切换"
-        android:background="#0ff"
+        android:text="Load Success!\nPress to change state"
+        android:gravity="center"
+        android:background="#0aa"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
 
 </android.support.constraint.ConstraintLayout>
