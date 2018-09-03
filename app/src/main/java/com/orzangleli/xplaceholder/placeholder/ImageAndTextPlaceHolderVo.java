@@ -16,10 +16,13 @@ public class ImageAndTextPlaceHolderVo {
     public int loadingImageResource;
     public int emptyImageResource;
     public int errorImageResource;
+    public String lottieFileName;
 
     public String loadingText;
     public String emptyText;
     public String errorText;
+
+    public boolean enableLottie;
 
     private Builder mBuilder;
 
@@ -32,20 +35,24 @@ public class ImageAndTextPlaceHolderVo {
         loadingImageResource = builder.loadingImageResource;
         emptyImageResource = builder.emptyImageResource;
         errorImageResource = builder.errorImageResource;
+        lottieFileName = builder.lottieFileName;
 
         loadingText = builder.loadingText;
         emptyText = builder.emptyText;
         errorText = builder.errorText;
+        enableLottie = builder.enableLottie;
     }
 
     public static class Builder {
         public int loadingImageResource;
         public int emptyImageResource;
         public int errorImageResource;
+        public String lottieFileName;
 
         public String loadingText;
         public String emptyText;
         public String errorText;
+        public boolean enableLottie;
 
         public Builder setLoadingImageResource(int loadingImageResource) {
             this.loadingImageResource = loadingImageResource;
@@ -62,6 +69,11 @@ public class ImageAndTextPlaceHolderVo {
             return this;
         }
 
+        public Builder setLottieFileName(String lottieFileName) {
+            this.lottieFileName = lottieFileName;
+            return this;
+        }
+
         public Builder setLoadingText(String loadingText) {
             this.loadingText = loadingText;
             return this;
@@ -74,6 +86,11 @@ public class ImageAndTextPlaceHolderVo {
 
         public Builder setErrorText(String errorText) {
             this.errorText = errorText;
+            return this;
+        }
+
+        public Builder setEnableLottie(boolean enableLottie) {
+            this.enableLottie = enableLottie;
             return this;
         }
 

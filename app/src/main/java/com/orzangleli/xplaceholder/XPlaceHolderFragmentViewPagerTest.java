@@ -6,9 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +15,6 @@ public class XPlaceHolderFragmentViewPagerTest extends AppCompatActivity {
     ViewPager mViewPager;
     FragmentStatePagerAdapter mFragmentStatePagerAdapter;
     List<Fragment> mFragments;
-    Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +24,6 @@ public class XPlaceHolderFragmentViewPagerTest extends AppCompatActivity {
         // 创建一个viewpager  和 FragmentPagerAdapter
         mTabLayout = this.findViewById(R.id.tabLayout);
         mViewPager = this.findViewById(R.id.viewpager);
-        mButton = this.findViewById(R.id.button);
 
         mFragments = new ArrayList<>();
         ViewPagerItemFragment viewPagerItemFragment1 = new ViewPagerItemFragment();
@@ -61,12 +56,5 @@ public class XPlaceHolderFragmentViewPagerTest extends AppCompatActivity {
                 tabAt.setText("第"+i+"个");
             }
         }
-
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("lxc", " ---> " + mViewPager.getChildCount());
-            }
-        });
     }
 }

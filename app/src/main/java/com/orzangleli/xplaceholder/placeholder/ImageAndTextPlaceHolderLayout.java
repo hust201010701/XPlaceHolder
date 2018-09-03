@@ -11,6 +11,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.orzangleli.placeholder.IPlaceHolderLayout;
 import com.orzangleli.placeholder.State;
 import com.orzangleli.xplaceholder.R;
@@ -31,9 +32,11 @@ public class ImageAndTextPlaceHolderLayout extends IPlaceHolderLayout<ImageAndTe
 
     private ImageView mImageView;
     private TextView mTextView;
+    private LottieAnimationView mLottieAnimationView;
     private ObjectAnimator mRotationAnimation;
     private int mBgColor;
     private long mLoadingDuration = 1000;
+
 
     public ImageAndTextPlaceHolderLayout(@NonNull Context context) {
         super(context);
@@ -55,6 +58,7 @@ public class ImageAndTextPlaceHolderLayout extends IPlaceHolderLayout<ImageAndTe
     @Override
     protected void bindView(View rootView) {
         mImageView = rootView.findViewById(R.id.img);
+        mLottieAnimationView = rootView.findViewById(R.id.lottieAnimationView);
         mTextView = rootView.findViewById(R.id.text);
         mRotationAnimation = ObjectAnimator.ofFloat(mImageView, "rotation", 0, 360f);
         mRotationAnimation.setInterpolator(new LinearInterpolator());
@@ -90,40 +94,65 @@ public class ImageAndTextPlaceHolderLayout extends IPlaceHolderLayout<ImageAndTe
                 }
                 if (mPlaceHolderVo != null) {
                     mImageView.setImageResource(mPlaceHolderVo.loadingImageResource);
-                    if (mRotationAnimation != null && !mRotationAnimation.isRunning()) {
+                    if (!mPlaceHolderVo.enableLottie && mRotationAnimation != null && !mRotationAnimation.isRunning()) {
                         mRotationAnimation.setDuration(mLoadingDuration);
                         mRotationAnimation.start();
+                        mLottieAnimationView.pauseAnimation();
+                        mLottieAnimationView.setVisibility(GONE);
+                        mImageView.setVisibility(VISIBLE);
+                    } else if (mPlaceHolderVo.enableLottie && mLottieAnimationView != null && !mLottieAnimationView.isAnimating()) {
+                        mLottieAnimationView.setAnimation(mPlaceHolderVo.lottieFileName);
+                        if (mRotationAnimation.isRunning()) {
+                            mRotationAnimation.end();
+                        }
+                        mLottieAnimationView.playAnimation();
+                        mImageView.setVisibility(GONE);
+                        mLottieAnimationView.setVisibility(VISIBLE);
                     }
                     mTextView.setText(mPlaceHolderVo.loadingText);
                 }
                 break;
             case EMPTY:
-                if (mRotationAnimation.isRunning()) {
+                if (mRotationAnimation != null && mRotationAnimation.isRunning()) {
                     mRotationAnimation.end();
+                }
+                if (mLottieAnimationView != null) {
+                    mLottieAnimationView.setVisibility(GONE);
+                    mLottieAnimationView.pauseAnimation();
                 }
                 if (mPlaceHolderView != null) {
                     mPlaceHolderView.setBackgroundColor(mBgColor);
                 }
                 if (mPlaceHolderVo != null) {
+                    mImageView.setVisibility(VISIBLE);
                     mImageView.setImageResource(mPlaceHolderVo.emptyImageResource);
                     mTextView.setText(mPlaceHolderVo.emptyText);
                 }
                 break;
             case ERROR:
-                if (mRotationAnimation.isRunning()) {
+                if (mRotationAnimation != null && mRotationAnimation.isRunning()) {
                     mRotationAnimation.end();
+                }
+                if (mLottieAnimationView != null) {
+                    mLottieAnimationView.setVisibility(GONE);
+                    mLottieAnimationView.pauseAnimation();
                 }
                 if (mPlaceHolderView != null) {
                     mPlaceHolderView.setBackgroundColor(mBgColor);
                 }
                 if (mPlaceHolderVo != null) {
+                    mImageView.setVisibility(VISIBLE);
                     mImageView.setImageResource(mPlaceHolderVo.errorImageResource);
                     mTextView.setText(mPlaceHolderVo.errorText);
                 }
                 break;
             case SUCCESS:
-                if (mRotationAnimation.isRunning()) {
+                if (mRotationAnimation != null && mRotationAnimation.isRunning()) {
                     mRotationAnimation.end();
+                }
+                if (mLottieAnimationView != null) {
+                    mLottieAnimationView.setVisibility(GONE);
+                    mLottieAnimationView.pauseAnimation();
                 }
                 break;
         }

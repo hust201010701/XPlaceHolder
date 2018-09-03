@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">XPlaceHolder</string>
-    <string name="loading_tip">加载中...</string>
-    <string name="error_tip">加载失败，点击重试</string>
-    <string name="empty_tip">数据为空</string>
+    <string name="loading_tip">loading...</string>
+    <string name="error_tip">load fail, click to retry</string>
+    <string name="empty_tip">sorry, data is empty</string>
 
 </resources>
