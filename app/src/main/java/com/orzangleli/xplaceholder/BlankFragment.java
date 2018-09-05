@@ -49,11 +49,11 @@ public class BlankFragment extends Fragment implements IPlaceHolderCallback {
 
         mImageAndTextPlaceHolderLayout = new ImageAndTextPlaceHolderLayout(this.getContext());
         ImageAndTextPlaceHolderVo imageAndTextPlaceHolderVo = new ImageAndTextPlaceHolderVo.Builder()
-                .setLoadingText("加载中。。。")
+                .setLoadingText("loading...")
                 .setLoadingImageResource(R.drawable.icon_loading)
-                .setEmptyText("数据为空")
+                .setEmptyText("empty data")
                 .setEmptyImageResource(R.drawable.icon_empty)
-                .setErrorText("加载错误，点击重试")
+                .setErrorText("load error, click to retry")
                 .setErrorImageResource(R.drawable.icon_error)
                 .build();
         mImageAndTextPlaceHolderLayout.setPlaceHolderVo(imageAndTextPlaceHolderVo);

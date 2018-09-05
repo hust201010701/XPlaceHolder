@@ -1,17 +1,14 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 26
-
-
 
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -22,13 +19,23 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+publish {
+    userOrg = 'orzangleli'           //bintray注册的用户名
+    groupId = 'com.orzangleli'            //compile引用时的第1部分groupId
+    artifactId = 'xplaceholder'       //compile引用时的第2部分项目名
+    publishVersion = '1.0.0'       //compile引用时的第3部分版本号
+    desc = 'An elegant and highly expandable android library for displaying different state of app like loading, empty, error and successful state.'
+    website = 'https://github.com/hust201010701/XPlaceHolder'
 }
