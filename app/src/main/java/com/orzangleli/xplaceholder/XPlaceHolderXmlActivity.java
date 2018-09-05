@@ -19,6 +19,8 @@ public class XPlaceHolderXmlActivity extends AppCompatActivity {
         setContentView(R.layout.activity_xplace_holder_xml);
 
         mImageAndTextPlaceHolderLayout = this.findViewById(R.id.placeHolderLayout);
+        mImageAndTextPlaceHolderLayout.showEmpty();
+
         mButton = this.findViewById(R.id.button);
 
         mButton.setOnClickListener(new View.OnClickListener() {
