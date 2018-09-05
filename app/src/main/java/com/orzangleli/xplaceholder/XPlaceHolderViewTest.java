@@ -27,11 +27,11 @@ public class XPlaceHolderViewTest extends AppCompatActivity implements IPlaceHol
 
         mImageAndTextPlaceHolderLayout = new ImageAndTextPlaceHolderLayout(this);
         ImageAndTextPlaceHolderVo imageAndTextPlaceHolderVo = new ImageAndTextPlaceHolderVo.Builder()
-                .setLoadingText("加载中。。。")
+                .setLoadingText("loading...")
                 .setLoadingImageResource(R.drawable.icon_loading)
-                .setEmptyText("页面空白文本")
+                .setEmptyText("empty data")
                 .setEmptyImageResource(R.drawable.icon_empty)
-                .setErrorText("页面加载错误")
+                .setErrorText("load error")
                 .setErrorImageResource(R.drawable.icon_error)
                 .build();
         mImageAndTextPlaceHolderLayout.setPlaceHolderVo(imageAndTextPlaceHolderVo);

@@ -27,11 +27,11 @@ public class XPlaceHolderFragmentViewPagerTest extends AppCompatActivity {
 
         mFragments = new ArrayList<>();
         ViewPagerItemFragment viewPagerItemFragment1 = new ViewPagerItemFragment();
-        viewPagerItemFragment1.setName("第一");
+        viewPagerItemFragment1.setName("The First");
         mFragments.add(viewPagerItemFragment1);
 
         ViewPagerItemFragment viewPagerItemFragment2 = new ViewPagerItemFragment();
-        viewPagerItemFragment2.setName("第二");
+        viewPagerItemFragment2.setName("The Second");
         mFragments.add(viewPagerItemFragment2);
 
         mFragmentStatePagerAdapter = new FragmentStatePagerAdapter(this.getSupportFragmentManager()) {
@@ -53,7 +53,7 @@ public class XPlaceHolderFragmentViewPagerTest extends AppCompatActivity {
         for (int i = 0; i < mTabLayout.getTabCount(); i++) {
             TabLayout.Tab tabAt = mTabLayout.getTabAt(i);
             if (tabAt != null) {
-                tabAt.setText("第"+i+"个");
+                tabAt.setText("position : "+i+"");
             }
         }
     }
